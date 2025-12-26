@@ -128,11 +128,24 @@
     <script>
         lucide.createIcons();
         
-        // --- DESENCRIPTADO BLINDADO ---
-        // Recibimos la data en Base64 y la convertimos a JSON en el navegador.
-        // Esto evita CUALQUIER error de comillas o caracteres raros.
-        const b64Data = "W3siaWQiOjEyLCJjcmVhdGVkX2F0IjoiMjAyNS0xMi0yNlQxOTo1MzoxNi4zMzY3OTctMDM6MDAiLCJtb250aCI6MTIsInllYXIiOjIwMjUsImNvbXBhbnlfbmFtZSI6IlByb3ZlbnQtQ28iLCJzdGF0c19kYXRhIjp7InJvaSI6eyJob3Vyc19zYXZlZCI6MTQ3LCJtb25leV9zYXZlZF91c2QiOiI5MTguNzUifSwia3BpcyI6eyJmb2xsb3d1cHMiOjc5LCJoZWF2eV91c2VycyI6NDksInRvdGFsX2xlYWRzIjoxNTEsImludGVyYWN0aW9ucyI6NTgyLCJxdWFsaWZpZWRfbGVhZHMiOjI3fSwibWV0YSI6eyJ5ZWFyIjoyMDI1LCJjb21wYW55IjoiUHJvdmVudC1DbyIsIm1vbnRoX25hbWUiOiJEaWNpZW1icmUiLCJnZW5lcmF0ZWRfYXQiOiIyMDI1LTEyLTI2VDIyOjUzOjE0LjA3MloifSwiY2hhcnRzIjp7InNhbGVzIjp7ImRhdGEiOlsxLDI2XSwibGFiZWxzIjpbIlNpIiwiU2luIGRlZmluaXIiXX0sInNvdXJjZXMiOnsiZGF0YSI6WzkzLDU4XSwibGFiZWxzIjpbImFudW5jaW8iLCJvcmdhbmljbyJdfSwic2VydmljZXMiOnsiZGF0YSI6WzcsNCw4LDcsMV0sImxhYmVscyI6WyJQaXNvIFJhZGlhbnRlIiwiQWlyZSBBY29uZGljaW9uYWRvIiwiT3Ryb3MiLCJSYWRpYWRvcmVzIiwiQ2FsZGVyYXMiXX0sInRpbWVsaW5lIjp7ImRhdGEiOls3LDgsMTAsMywyLDEwLDksOCwxMiwzLDcsMTIsMTcsOCw5LDQsNiwzLDcsNSwxXSwibGFiZWxzIjpbIjQiLCI1IiwiNiIsIjciLCI4IiwiOSIsIjEwIiwiMTEiLCIxMiIsIjEzIiwiMTQiLCIxNSIsIjE2IiwiMTciLCIxOCIsIjE5IiwiMjAiLCIyMSIsIjIyIiwiMjMiLCIyNCJdfSwibG9jYXRpb25zIjp7ImRhdGEiOlsxLDEsNCwxLDEsMSwxLDEsMSwxLDEsMSwxLDEsMSwxLDEsMSwxLDEsMiwxLDFdLCJsYWJlbHMiOlsiRmVybmFuZGV6IG9ybyIsIlZpbGxhIGZsb3JlbmNpYSwgbmV1cXXDqW4gY2FwaXRhbCIsIkFsbGVuIiwiTmV1cXXDqW4sIGNhbGxlIGNvbnF1aXN0YWRvcmVzIGRlbCBkZXNpZXJ0byBhbCAyNDAwIiwiQm9jYWh1ZSwgbmV1cXXDqW4iLCJHZW5lcmFsIHJvY2EsIHLDrW8gbmVncm8iLCJOZXVxdcOpbiBjYXBpdGFsIC0gYmFycmlvIGxhIHBlcmVncmluYSIsIk5ldXF1w6luIGNhcGl0YWwsIGJhcnJpbyBjb3N0YSBub2dhbCIsIkJhcnJpbyBiZWxncmFubywgc2F0dXJuaW5vIHRvcnJlcyBjYXNpIGJvZXJyLCBuZXVxdcOpbiBjYXBpdGFsIiwiTmV1cXXDqW4gY2FwaXRhbCwgYmFycmlvIGNvbmZsdWVuY2lhIHNlY3RvciBydXJhbCIsIk5ldXF1w6luLCBiYXJyaW8gbmFjaW9uZXMgdW5pZGFzIiwiTmV1cXXDqW4gY2FwaXRhbCIsIlBsb3R0aWVyLCBiYXJyaW8gY2FzdHJvIHJlbmTDs24iLCJDYW5hbGVzIGRlIHBsb3R0aWVyIiwiUGxvdHRpZXIsIGxvdGVvIGxhcyBnZW1tYXMiLCJDaXBvbGxldHRpIiwiTMOtbWl0ZSBwbG90dGllciAtIG5ldXF1w6luLCBiYXJyaW8gZmluY2EgbGFndW5hIGJsYW5jYSIsIk5ldXF1ZW4gY2FwaXRhbCwgYmFycmlvIG1hcm9uZXNlIiwiVmFsZW50aW5hIHN1ciwgbmV1cXXDqW4iLCJQYXJxdWUgaW5kdXN0cmlhbCIsIkZlcm7DoW5kZXogb3JvIiwiUGxvdHRpZXIgLSBsb3RlbyBwZXVtYXllbiBtYW56YW5hIGsgbG90ZSAwMyAoY29sb25pYSBzYW4gZnJhbmNpc2NvKSIsIkxhIGhlcnJhZHVyYSwgcGxvdGllciJdfX0sImFpX2FuYWx5c2lzIjoiRW4gZGljaWVtYnJlIDIwMjUsIGxhIElBIGdlbmVyw7MgdW4gYWhvcnJvIGRlICQ5MTguNzUgVVNEIHByb2Nlc2FuZG8gMTUxIGxlYWRzLCBjb24gbWF5b3IgaW50ZXLDqXMgZW4gUGlzbyBSYWRpYW50ZSB5IHVuYSBmdWVydGUgY29uY2VudHJhY2nDs24gZGUgZGVtYW5kYSBlbiBOZXVxdcOpbiBjYXBpdGFsLCBsb2dyYW5kbyB1bmEgY29udmVyc2nDs24gY2FsaWZpY2FkYSBkZWwgMTcuOSUuIn19XQ==";
-        const HISTORY = JSON.parse(atob(b64Data));
+        // --- FUNCIÓN DE DECODIFICADO UTF-8 (LA SOLUCIÓN) ---
+        function b64DecodeUnicode(str) {
+            return decodeURIComponent(atob(str).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+        }
+
+        // Recibimos la data en Base64
+        const b64Data = "W3siaWQiOjEzLCJjcmVhdGVkX2F0IjoiMjAyNS0xMi0yNlQyMDoxMDowOC41NjUyMDQtMDM6MDAiLCJtb250aCI6MTIsInllYXIiOjIwMjUsImNvbXBhbnlfbmFtZSI6IlByb3ZlbnQtQ28iLCJzdGF0c19kYXRhIjp7InJvaSI6eyJob3Vyc19zYXZlZCI6MTQ3LCJtb25leV9zYXZlZF91c2QiOiI5MTguNzUifSwia3BpcyI6eyJmb2xsb3d1cHMiOjc5LCJoZWF2eV91c2VycyI6NDksInRvdGFsX2xlYWRzIjoxNTEsImludGVyYWN0aW9ucyI6NTgyLCJxdWFsaWZpZWRfbGVhZHMiOjI3fSwibWV0YSI6eyJ5ZWFyIjoyMDI1LCJjb21wYW55IjoiUHJvdmVudC1DbyIsIm1vbnRoX25hbWUiOiJEaWNpZW1icmUiLCJnZW5lcmF0ZWRfYXQiOiIyMDI1LTEyLTI2VDIzOjEwOjA2Ljg0NFoifSwiY2hhcnRzIjp7InNhbGVzIjp7ImRhdGEiOlsxLDI2XSwibGFiZWxzIjpbIlNpIiwiU2luIGRlZmluaXIiXX0sInNvdXJjZXMiOnsiZGF0YSI6WzkzLDU4XSwibGFiZWxzIjpbImFudW5jaW8iLCJvcmdhbmljbyJdfSwic2VydmljZXMiOnsiZGF0YSI6WzcsNCw4LDcsMV0sImxhYmVscyI6WyJQaXNvIFJhZGlhbnRlIiwiQWlyZSBBY29uZGljaW9uYWRvIiwiT3Ryb3MiLCJSYWRpYWRvcmVzIiwiQ2FsZGVyYXMiXX0sInRpbWVsaW5lIjp7ImRhdGEiOls3LDgsMTAsMywyLDEwLDksOCwxMiwzLDcsMTIsMTcsOCw5LDQsNiwzLDcsNSwxXSwibGFiZWxzIjpbIjQiLCI1IiwiNiIsIjciLCI4IiwiOSIsIjEwIiwiMTEiLCIxMiIsIjEzIiwiMTQiLCIxNSIsIjE2IiwiMTciLCIxOCIsIjE5IiwiMjAiLCIyMSIsIjIyIiwiMjMiLCIyNCJdfSwibG9jYXRpb25zIjp7ImRhdGEiOlsxLDEsNCwxLDEsMSwxLDEsMSwxLDEsMSwxLDEsMSwxLDEsMSwxLDEsMiwxLDFdLCJsYWJlbHMiOlsiRmVybmFuZGV6IG9ybyIsIlZpbGxhIGZsb3JlbmNpYSwgbmV1cXXDqW4gY2FwaXRhbCIsIkFsbGVuIiwiTmV1cXXDqW4sIGNhbGxlIGNvbnF1aXN0YWRvcmVzIGRlbCBkZXNpZXJ0byBhbCAyNDAwIiwiQm9jYWh1ZSwgbmV1cXXDqW4iLCJHZW5lcmFsIHJvY2EsIHLDrW8gbmVncm8iLCJOZXVxdcOpbiBjYXBpdGFsIC0gYmFycmlvIGxhIHBlcmVncmluYSIsIk5ldXF1w6luIGNhcGl0YWwsIGJhcnJpbyBjb3N0YSBub2dhbCIsIkJhcnJpbyBiZWxncmFubywgc2F0dXJuaW5vIHRvcnJlcyBjYXNpIGJvZXJyLCBuZXVxdcOpbiBjYXBpdGFsIiwiTmV1cXXDqW4gY2FwaXRhbCwgYmFycmlvIGNvbmZsdWVuY2lhIHNlY3RvciBydXJhbCIsIk5ldXF1w6luLCBiYXJyaW8gbmFjaW9uZXMgdW5pZGFzIiwiTmV1cXXDqW4gY2FwaXRhbCIsIlBsb3R0aWVyLCBiYXJyaW8gY2FzdHJvIHJlbmTDs24iLCJDYW5hbGVzIGRlIHBsb3R0aWVyIiwiUGxvdHRpZXIsIGxvdGVvIGxhcyBnZW1tYXMiLCJDaXBvbGxldHRpIiwiTMOtbWl0ZSBwbG90dGllciAtIG5ldXF1w6luLCBiYXJyaW8gZmluY2EgbGFndW5hIGJsYW5jYSIsIk5ldXF1ZW4gY2FwaXRhbCwgYmFycmlvIG1hcm9uZXNlIiwiVmFsZW50aW5hIHN1ciwgbmV1cXXDqW4iLCJQYXJxdWUgaW5kdXN0cmlhbCIsIkZlcm7DoW5kZXogb3JvIiwiUGxvdHRpZXIgLSBsb3RlbyBwZXVtYXllbiBtYW56YW5hIGsgbG90ZSAwMyAoY29sb25pYSBzYW4gZnJhbmNpc2NvKSIsIkxhIGhlcnJhZHVyYSwgcGxvdGllciJdfX0sImFpX2FuYWx5c2lzIjoiRW4gZGljaWVtYnJlLCBsYSBJQSBhaG9ycsOzICQ5MTguNzUgVVNEIGdlc3Rpb25hbmRvIDE1MSBsZWFkczsgc29icmVzYWxlIGVsIGludGVyw6lzIGVuIFBpc28gUmFkaWFudGUsIGVzcGVjaWFsbWVudGUgZW4gTmV1cXXDqW4gY2FwaXRhbCB5IFBsb3R0aWVyLCBjb24gMjcgbGVhZHMgY2FsaWZpY2Fkb3MgeSA0OSB1c3VhcmlvcyBtdXkgYWN0aXZvcywgY29uc29saWRhbmRvIGxhIGVmaWNpZW5jaWEgZW4gYXRlbmNpw7NuIHkgZ2VuZXJhY2nDs24gZGUgb3BvcnR1bmlkYWRlcy4ifX1d";
+        let HISTORY = [];
+        
+        try {
+            // Usamos la función segura para UTF-8
+            HISTORY = JSON.parse(b64DecodeUnicode(b64Data));
+        } catch(e) {
+            console.error("Error decodificando datos:", e);
+            document.getElementById('aiReportText').innerText = "Error cargando datos históricos. Por favor regenere el reporte.";
+        }
 
         let currentMonthData = null;
         let chartInstance = null;
@@ -171,7 +184,8 @@
             document.getElementById('qualifiedVal').innerText = currentMonthData.kpis.qualified_leads;
             
             // AI Text (Safe Replace)
-            const aiText = report.ai_analysis || "Sin análisis.";
+            // Verificamos si existe el análisis, si no, mostramos mensaje
+            const aiText = report.ai_analysis || "Análisis pendiente de generación.";
             document.getElementById('aiReportText').innerHTML = aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
             // Comparativa
